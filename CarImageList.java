@@ -22,6 +22,8 @@ public class CarImageList extends ArrayList<CarImage> {
             for(int j = 0; j < 4; j++) {
                 plate = plate + NUMS.charAt(rnd.nextInt(n));
             }
+            int carType = rnd.nextInt();
+            
             CarImage car = new CarImage(plate);
             
             this.add(car);

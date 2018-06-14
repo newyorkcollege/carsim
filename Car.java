@@ -19,10 +19,12 @@ public class Car {
     }
     
     public void move(int x, int y) {
-        this.x = x;
-        this.y = y;
-        Random rnd = new Random();
-        this.direction = rnd.nextInt(8);
+        if(!crashed) {
+            this.x = x;
+            this.y = y;
+            Random rnd = new Random();
+            this.direction = rnd.nextInt(8);
+        }
     }
     
     public void translate() {
@@ -89,6 +91,13 @@ public class Car {
         a.move(100, 120);
         
         System.out.println(a);
+    }
+    
+    public String imageFile() {
+        if(crashed) {
+            return "crashed.png";
+        }
+        return "car.png";
     }
 }
 

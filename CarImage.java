@@ -9,11 +9,19 @@ public class CarImage extends ImageView {
     private Car car;
    
     public CarImage(String plate) {
-        car = new Car(plate);
         Random rnd = new Random();
+        int carType = rnd.nextInt(100);
+        
+        if(carType <= 80) {
+            car = new Car(plate);
+        }
+        else {
+            car = new Bus(plate);
+        }
+        
         car.move(rnd.nextInt(Config.width), rnd.nextInt(Config.height));
         
-        Image carimg = new Image(Simulator.class.getResourceAsStream("car.png"));
+        Image carimg = new Image(Simulator.class.getResourceAsStream(car.imageFile()));
         this.setImage(carimg);
         
         this.setX(car.getX());
@@ -29,6 +37,16 @@ public class CarImage extends ImageView {
         car.translate();
         this.setX(car.getX());
         this.setY(car.getY());
+    }
+    
+    public void crash() {
+        car.crash();
+        Image carimg = new Image(Simulator.class.getResourceAsStream(car.imageFile()));
+        this.setImage(carimg);
+    }
+    
+    public boolean isCrashed() {
+        return car.isCrashed();
     }
     
 }
